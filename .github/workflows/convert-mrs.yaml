@@ -6,6 +6,9 @@ on:
       - "rules/*.yaml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   convert:
     runs-on: ubuntu-latest
@@ -14,13 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Pull latest changes
+        run: git pull
+
       - name: Convert all YAML → MRS
         run: |
-          docker run --rm -v ${{ github.workspace }}:/data --entrypoint /mihomo metacubex/mihomo \
+          mkdir -p mrs
+          docker run --rm -v ${{ github.workspace }}:/data metacubex/mihomo \
             sh -c '
             for f in /data/rules/*.yaml; do
               name=$(basename "$f" .yaml)
-              /mihomo convert-ruleset domain yaml "/data/rules/$name.yaml" "/data/rules/$name.mrs"
+              /mihomo convert-ruleset domain yaml "/data/rules/$name.yaml" "/data/mrs/$name.mrs"
               echo "✅ Converted $name.yaml → $name.mrs"
             done
             '
@@ -29,6 +36,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add rules/*.mrs || true
+          git add mrs/*.mrs || true
           git commit -m "Auto-generate MRS files" || echo "No changes"
           git push
