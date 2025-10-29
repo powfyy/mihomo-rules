@@ -20,17 +20,24 @@ jobs:
       - name: Pull latest changes
         run: git pull
 
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y curl wget git jq
+
+      - name: Download and install Mihomo
+        run: |
+          curl -L https://github.com/MetaCubeX/mihomo/releases/download/v1.19.9/mihomo-linux-amd64-v1.19.9.deb -o mihomo.deb
+          sudo apt install --fix-missing ./mihomo.deb
+
       - name: Convert all YAML → MRS
         run: |
           mkdir -p mrs
-          docker run --rm -v ${{ github.workspace }}:/data metacubex/mihomo \
-            sh -c '
-            for f in /data/rules/*.yaml; do
-              name=$(basename "$f" .yaml)
-              /mihomo convert-ruleset domain yaml "/data/rules/$name.yaml" "/data/mrs/$name.mrs"
-              echo "✅ Converted $name.yaml → $name.mrs"
-            done
-            '
+          for f in rules/*.yaml; do
+            name=$(basename "$f" .yaml)
+            mihomo convert-ruleset domain yaml "rules/$name.yaml" "mrs/$name.mrs"
+            echo "✅ Converted $name.yaml → $name.mrs"
+          done
 
       - name: Commit and push MRS files
         run: |
