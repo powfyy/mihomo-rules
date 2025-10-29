@@ -14,9 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Convert YAML → MRS
+      - name: Convert all YAML → MRS
         run: |
-          docker run --rm -v ${{ github.workspace }}:/data metacubex/mihomo \
+          docker run --rm -v ${{ github.workspace }}:/data --entrypoint /mihomo metacubex/mihomo \
             sh -c '
             for f in /data/rules/*.yaml; do
               name=$(basename "$f" .yaml)
