@@ -1,0 +1,55 @@
+# JetBrains Domains Ruleset
+# Description: список доменов JetBrains и связанных сервисов.
+# Author: powfyy
+# Updated: 2025-10-29
+
+payload:
+  - '+.jetbrains.com'
+  - '+.jetbrains.net'
+  - '+.jetbrains.org'
+  - '+.jetbrains.ru'
+  - '+.jetbrains.dev'
+  - '+.jetbrains.ai'
+  - '+.jetbrains.team'
+  - '+.jetbrains.space'
+  - '+.myjetbrains.com'
+  - '+.intellij.com'
+  - '+.intellij.net'
+  - '+.intellij.org'
+  - '+.academy.jetbrains.com'
+  - '+.marketplace.jetbrains.com'
+  - '+.plugins.jetbrains.com'
+  - '+.resources.jetbrains.com'
+  - '+.support.jetbrains.com'
+  - '+.status.jetbrains.com'
+  - '+.sales.jetbrains.com'
+  - '+.trust-center.jetbrains.com'
+
+  - '+.kotlinlang.org'
+  - '+.kotlinconf.com'
+  - '+.kotl.in'
+  - '+.talkingkotlin.com'
+
+  - '+.teamcity.com'
+  - '+.teamcity.jetbrains.com'
+  - '+.youtrack.cloud'
+  - '+.youtrack.jetbrains.com'
+  - '+.upsource.jetbrains.com'
+  - '+.datalore.jetbrains.com'
+  - '+.fleet.jetbrains.com'
+
+  - '+.jetbrainsmerchandise.com'
+  - '+.confluence.jetbrains.com'
+  - '+.frameworks.jetbrains.com'
+  - '+.package-search.services.jetbrains.com'
+  - '+.data.services.jetbrains.com'
+
+  - '+.zendesk.com'
+  - '+.zendeskusercontent.com'
+
+  - '+.cloudfront.net'
+  - '+.elb.amazonaws.com'
+  - '+.aws.intellij.net'
+
+  - '+.vantatrust.com'
+  - '+.mkto-lon020062.com'
